@@ -1,3 +1,6 @@
-.home {
-  color: blue;
+.columnWrapper {
+  padding: 20;
+  height: auto;
+  width: auto;
+  margin: 50px auto;
 }

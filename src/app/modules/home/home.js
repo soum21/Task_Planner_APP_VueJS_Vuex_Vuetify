@@ -1,4 +1,7 @@
 import draggable from 'vuedraggable';
+import TaskCard from '../../components/taskCard';
+import ProgressBar from '../../components/progressBar';
+import NoItemsCard from '../../components/noItemsCard';
 
 export default {
   name: 'Home',
@@ -6,7 +9,10 @@ export default {
     return {};
   },
   components: {
-    draggable
+    draggable,
+    TaskCard,
+    ProgressBar,
+    NoItemsCard
   },
 
   computed: {

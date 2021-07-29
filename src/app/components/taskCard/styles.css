@@ -1,0 +1,11 @@
+.cardTitle{
+    white-space: nowrap ;
+    word-break: normal;
+    overflow: hidden ;
+    text-overflow: ellipsis;
+}
+
+.rowContainer{
+    align-items: center;
+    justify-content: center;
+}

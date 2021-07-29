@@ -1,0 +1,49 @@
+<div class="cardContainer">
+  <v-container class="my-1">
+    <v-card v-if="shouldDisplay" class="ma-3">
+      <v-card-title class="h6 pl-2" :class="cardHeaderClass">
+        <v-row no-gutters class="rowContainer">
+          <v-col class="d-flex justify-start font-weight-medium" cols="6" sm="6">
+            <span class="cardTitle">{{cardHeaderText}} </span>
+          </v-col>
+          <v-col class="d-flex justify-end" cols="6" sm="6">
+            <div>
+              <v-btn text icon color="grey darken-1" @click="gotoDetail(item.id)">
+                <v-icon>mdi-briefcase</v-icon>
+              </v-btn>
+            </div>
+            <div>
+              <v-btn text icon color="grey darken-1" @click="doEdit(item.id)">
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
+            </div>
+            <div>
+              <v-btn text icon color="grey darken-1" @click="doDelete(item.id)">
+                <v-icon>mdi-delete-forever</v-icon>
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-title>
+      <v-spacer></v-spacer>
+      <v-list>
+        <v-form class="px-1" :disabled="formDisable">
+          <v-list-item>
+            <v-text-field label="Title" hide-details="auto" v-model="item.title"></v-text-field>
+          </v-list-item>
+          <v-list-item>
+            <v-textarea label="Description" rows="1" v-model="item.description"></v-textarea>
+          </v-list-item>
+          <v-row no-gutters class="rowContainer" v-show="!formDisable">
+            <v-col class="d-flex justify-center" cols="6" sm="6">
+              <v-btn text class="success mx-0 mt-3" width="100px" @click="submit(item.id, board)">Save</v-btn>
+            </v-col>
+            <v-col class="d-flex justify-center" cols="6" sm="6">
+              <v-btn text class="error mx-0 mt-3" width="100px">Cancel</v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
+      </v-list>
+    </v-card>
+  </v-container>
+</div>
