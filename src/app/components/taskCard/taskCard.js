@@ -1,10 +1,20 @@
+import TimePicker from '../timePicker';
+
 export default {
   name: 'TaskCard',
   data() {
     return {
       shouldDisplay: false,
-      formDisable: true
+      formDisable: true,
+      title: '',
+      description: '',
+      time: '',
+      valid: false,
+      titleRules: [(v) => !!v || 'Title is required']
     };
+  },
+  components: {
+    TimePicker
   },
   props: {
     item: {
@@ -20,12 +30,10 @@ export default {
     if (this.item === null) {
       this.shouldDisplay = false;
     } else {
+      this.title = this.item.title;
+      this.description = this.item.description;
+      this.time = this.item.estimatedTime ? this.item.estimatedTime : '';
       this.shouldDisplay = true;
-    }
-  },
-  watch: {
-    item: function (newVal, oldVal) {
-      console.log('Prop changed: ', newVal, ' | was: ', oldVal);
     }
   },
   computed: {
@@ -35,11 +43,8 @@ export default {
       if (selected === 'pending') return 'blue lighten-4';
       if (selected === 'done') return 'green lighten-4';
     },
-    cardHeaderText() {
-      let selected = this.board;
-      if (selected === 'processing') return 'Task';
-      if (selected === 'pending') return 'Pending';
-      if (selected === 'done') return 'Done';
+    buttonClass() {
+      return this.valid ? 'success mx-0 mt-3' : 'grey mx-0 mt-3';
     }
   },
   methods: {
@@ -50,13 +55,38 @@ export default {
       console.log(id);
       this.formDisable = false;
     },
-    doDelete(event) {
-      event.preventDefault();
-      console.log(event.target);
+    doDelete(id, board) {
+      const data = {
+        id: id,
+        board: board
+      };
+      this.$store.dispatch('deleteTask', data);
     },
     submit(id, board) {
-      console.log(id, board);
-      console.log(this.item.title, this.item.description);
+      if (this.$refs.form.validate()) {
+        const data = {
+          id: id,
+          board: board,
+          title: this.title,
+          description: this.description,
+          estimatedTime: this.time
+        };
+        this.$store.dispatch('editTask', data);
+        this.formDisable = true;
+      }
+    },
+    resetData() {
+      this.title = this.item.title;
+      this.description = this.item.description;
+      this.time = this.item.estimatedTime;
+      this.formDisable = true;
+      this.$refs.form.resetValidation();
+    },
+    changeTime(time) {
+      this.time = time;
+    },
+    cancel() {
+      this.resetData();
     }
   }
 };

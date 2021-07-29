@@ -14,7 +14,7 @@
         <v-sheet class="columnWrapper" elevation="2">
           <draggable v-model="tasksProcessing" group="task" @start="drag=true" @end="drag=false" :emptyInsertThreshold="500">
             <transition-group>
-              <div v-for="(element,index) in tasksProcessing" :key="element.id">
+              <div v-for="(element,index) in tasksProcessing" :key="element.title + element.id">
                 <TaskCard :item="element" :board="'processing'" />
               </div>
             </transition-group>
@@ -24,9 +24,9 @@
       </v-col>
       <v-col cols="12" md="4">
         <v-sheet class="columnWrapper" elevation="2">
-          <draggable v-model="tasksPending" group="task" @start="drag=true" @end="drag=false">
+          <draggable v-model="tasksPending" group="task" @start="drag=true" @end="drag=false" :emptyInsertThreshold="500" >
             <transition-group>
-              <div v-for="(element,index) in tasksPending" :key="element.id">
+              <div v-for="(element,index) in tasksPending" :key="element.title + element.id">
                 <TaskCard :item="element" :board="'pending'" />
               </div>
             </transition-group>
@@ -36,9 +36,9 @@
       </v-col>
       <v-col cols="12" md="4">
         <v-sheet class="columnWrapper" elevation="2">
-          <draggable v-model="tasksDone" group="task" @start="drag=true" @end="drag=false">
+          <draggable v-model="tasksDone" group="task" @start="drag=true" @end="drag=false" :emptyInsertThreshold="500">
             <transition-group>
-              <div v-for="(element,index) in tasksDone" :key="element.id"><TaskCard :item="element" :board="'done'" /></div>
+              <div v-for="(element,index) in tasksDone" :key="element.title + element.id"><TaskCard :item="element" :board="'done'" /></div>
             </transition-group>
           </draggable>
           <div v-if="tasksDone.length < 1"><NoItemsCard /></div>

@@ -14,4 +14,12 @@ const setProcessingTaskList = (context, payload) => {
 const setDoneTaskList = (context, payload) => {
   context.commit(types.SET_DONE_TASKS_LIST, payload);
 };
-export default { addTask, setPendingTaskList, setProcessingTaskList, setDoneTaskList };
+
+const editTask = (context, payload) => {
+  context.commit(types.EDIT_TASK, payload);
+};
+
+const deleteTask = (context, payload) => {
+  context.commit(types.DELETE_TASK, payload);
+};
+export default { addTask, setPendingTaskList, setProcessingTaskList, setDoneTaskList, editTask, deleteTask };

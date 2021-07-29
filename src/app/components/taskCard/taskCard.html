@@ -4,7 +4,7 @@
       <v-card-title class="h6 pl-2" :class="cardHeaderClass">
         <v-row no-gutters class="rowContainer">
           <v-col class="d-flex justify-start font-weight-medium" cols="6" sm="6">
-            <span class="cardTitle">{{cardHeaderText}} </span>
+            <span class="cardTitle">{{item.title}} </span>
           </v-col>
           <v-col class="d-flex justify-end" cols="6" sm="6">
             <div>
@@ -18,7 +18,7 @@
               </v-btn>
             </div>
             <div>
-              <v-btn text icon color="grey darken-1" @click="doDelete(item.id)">
+              <v-btn text icon color="grey darken-1" @click="doDelete(item.id, board)">
                 <v-icon>mdi-delete-forever</v-icon>
               </v-btn>
             </div>
@@ -27,18 +27,29 @@
       </v-card-title>
       <v-spacer></v-spacer>
       <v-list>
-        <v-form class="px-1" :disabled="formDisable">
+        <v-form class="px-1" v-model="valid" :disabled="formDisable" ref="form">
           <v-list-item>
-            <v-text-field label="Title" hide-details="auto" v-model="item.title"></v-text-field>
+            <v-text-field
+              label="Title"
+              hide-details="auto"
+              v-model="title"
+              value="item.title"
+              :rules="titleRules"
+            ></v-text-field>
           </v-list-item>
           <v-list-item>
-            <v-textarea label="Description" rows="1" v-model="item.description"></v-textarea>
+            <v-textarea label="Description" rows="1" v-model="description" value="item.description"></v-textarea>
+          </v-list-item>
+          <v-list-item>
+            <TimePicker @changeTime="changeTime($event)" :itemTime="time" />
           </v-list-item>
           <v-row no-gutters class="rowContainer" v-show="!formDisable">
             <v-col class="d-flex justify-center" cols="6" sm="6">
-              <v-btn text class="success mx-0 mt-3" width="100px" @click="submit(item.id, board)">Save</v-btn>
+              <v-btn text :class="buttonClass" :disabled="!valid" width="100px" @click="submit(item.id, board)"
+                >Save</v-btn
+              >
             </v-col>
-            <v-col class="d-flex justify-center" cols="6" sm="6">
+            <v-col class="d-flex justify-center" cols="6" sm="6" @click="cancel">
               <v-btn text class="error mx-0 mt-3" width="100px">Cancel</v-btn>
             </v-col>
           </v-row>
