@@ -1,0 +1,74 @@
+<v-app>
+  <v-container>
+    <v-progress-linear v-model="totalProgress" color="blue-grey" height="25">
+      <strong>{{ Math.ceil(totalProgress) }}%</strong>
+    </v-progress-linear>
+    <v-row justify="space-around">
+      <v-col cols="12" md="4">
+        <draggable
+          class="list-group"
+          v-model="tasksProcessing"
+          group="task"
+          @start="drag=true"
+          @end="drag=false"
+          item-key="id"
+        >
+        <div v-for="element in tasksProcessing" :key="element.id">{{element.title}}</div>
+        </draggable>
+      </v-col>
+      <v-col cols="12" md="4">
+        <draggable
+          class="list-group"
+          v-model="tasksPending"
+          group="task"
+          @start="drag=true"
+          @end="drag=false"
+          item-key="id"
+        >
+        <div v-for="element in tasksPending" :key="element.id">{{element.title}}</div>
+        </draggable>
+      </v-col>
+      <v-col cols="12" md="4">
+        <draggable
+          class="list-group"
+          v-model="tasksDone"
+          group="task"
+          @start="drag=true"
+          @end="drag=false"
+          item-key="id"
+        >
+        <div v-for="element in tasksDone" :key="element.id">{{element.title}}</div>
+        </draggable>
+      </v-col>
+    </v-row>
+
+  </v-container>
+</v-app>
+
+<!-- <v-col cols="12" md="4">
+    <v-sheet class="pa-4" :elevation="8">
+      <v-card
+      class="mx-auto"
+      max-width="344"
+      variant="outlined"
+    >
+      <v-list-item three-line>
+        <v-list-item-content>
+          <div class="text-overline mb-4">
+            {{element.title}}
+          </div>
+          <v-list-item-title class="text-h5 mb-1">
+            {{element.description}}
+          </v-list-item-title>
+          <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+        </v-list-item-content>
+  
+        <v-list-item-avatar
+          tile
+          size="80"
+          color="grey"
+        ></v-list-item-avatar>
+      </v-list-item>
+    </v-card>
+    </v-sheet>
+  </v-col> -->
