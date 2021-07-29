@@ -6,7 +6,9 @@ import NoItemsCard from '../../components/noItemsCard';
 export default {
   name: 'Home',
   data() {
-    return {};
+    return {
+      taskPercent: 0
+    };
   },
   components: {
     draggable,
@@ -41,7 +43,17 @@ export default {
       }
     },
     totalProgress() {
+      this.taskPercent = Math.floor(this.$store.getters.getProgressPercent);
       return this.$store.getters.getProgressPercent;
+    },
+    pendingBarDetails() {
+      return this.$store.getters.pendingBarDetails;
+    },
+    processingBarDetails() {
+      return this.$store.getters.processingBarDetails;
+    },
+    doneBarDetails() {
+      return this.$store.getters.doneBarDetails;
     }
   },
   methods: {}

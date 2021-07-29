@@ -39,8 +39,8 @@ export default {
   computed: {
     cardHeaderClass() {
       let selected = this.board;
-      if (selected === 'processing') return 'red lighten-4';
-      if (selected === 'pending') return 'blue lighten-4';
+      if (selected === 'processing') return 'blue lighten-4';
+      if (selected === 'pending') return 'red lighten-4';
       if (selected === 'done') return 'green lighten-4';
     },
     buttonClass() {

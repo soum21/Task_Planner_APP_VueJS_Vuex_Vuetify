@@ -1,7 +1,11 @@
 <v-app>
   <v-container>
     <!-- Progress Bar Start -->
-    <ProgressBar :progressData="totalProgress" />
+    
+    <div>
+      <span class="text-h6">Progress</span>
+      <ProgressBar :progressData="totalProgress" />
+    </div>
     <!-- Progress Bar End -->
 
     <!-- Search And Add Area -->
@@ -12,21 +16,20 @@
     <v-row justify="space-around">
       <v-col cols="12" md="4">
         <v-sheet class="columnWrapper" elevation="2">
-          <draggable v-model="tasksProcessing" group="task" @start="drag=true" @end="drag=false" :emptyInsertThreshold="500">
+          <div class="d-flex justify-center mb-6">
+            <span class="text-h6 pt-2 px-1">Pending</span>
+            <span class="text-h6 pt-2 px-1">({{pendingBarDetails}})</span>
+            <span class="text-h6 pt-2 px-1">({{taskPercent}}%)</span>
+          </div>
+          <draggable
+            v-model="tasksPending"
+            group="task"
+            @start="drag=true"
+            @end="drag=false"
+            :emptyInsertThreshold="500"
+          >
             <transition-group>
-              <div v-for="(element,index) in tasksProcessing" :key="element.title + element.id">
-                <TaskCard :item="element" :board="'processing'" />
-              </div>
-            </transition-group>
-          </draggable>
-          <div v-if="tasksProcessing.length < 1"><NoItemsCard /></div>
-        </v-sheet>
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-sheet class="columnWrapper" elevation="2">
-          <draggable v-model="tasksPending" group="task" @start="drag=true" @end="drag=false" :emptyInsertThreshold="500" >
-            <transition-group>
-              <div v-for="(element,index) in tasksPending" :key="element.title + element.id">
+              <div v-for="(element,index) in tasksPending" :key="element.id">
                 <TaskCard :item="element" :board="'pending'" />
               </div>
             </transition-group>
@@ -36,9 +39,39 @@
       </v-col>
       <v-col cols="12" md="4">
         <v-sheet class="columnWrapper" elevation="2">
+          <div class="d-flex justify-center mb-6">
+            <span class="text-h6 pt-2 px-1">Processing</span>
+            <span class="text-h6 pt-2 px-1">({{processingBarDetails}})</span>
+            <span class="text-h6 pt-2 px-1">({{taskPercent}}%)</span>
+          </div>
+          <draggable
+            v-model="tasksProcessing"
+            group="task"
+            @start="drag=true"
+            @end="drag=false"
+            :emptyInsertThreshold="500"
+          >
+            <transition-group>
+              <div v-for="(element,index) in tasksProcessing" :key="element.id">
+                <TaskCard :item="element" :board="'processing'" />
+              </div>
+            </transition-group>
+          </draggable>
+          <div v-if="tasksProcessing.length < 1"><NoItemsCard /></div>
+        </v-sheet>
+      </v-col>
+      <v-col cols="12" md="4">
+        <v-sheet class="columnWrapper" elevation="2">
+          <div class="d-flex justify-center mb-6">
+            <span class="text-h6 pt-2 px-1">Done</span>
+            <span class="text-h6 pt-2 px-1">({{doneBarDetails}})</span>
+            <span class="text-h6 pt-2 px-1">({{taskPercent}}%)</span>
+          </div>
           <draggable v-model="tasksDone" group="task" @start="drag=true" @end="drag=false" :emptyInsertThreshold="500">
             <transition-group>
-              <div v-for="(element,index) in tasksDone" :key="element.title + element.id"><TaskCard :item="element" :board="'done'" /></div>
+              <div v-for="(element,index) in tasksDone" :key="element.id">
+                <TaskCard :item="element" :board="'done'" />
+              </div>
             </transition-group>
           </draggable>
           <div v-if="tasksDone.length < 1"><NoItemsCard /></div>
