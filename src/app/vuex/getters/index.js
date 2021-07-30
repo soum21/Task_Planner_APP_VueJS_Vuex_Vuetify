@@ -17,6 +17,7 @@ const getProgressPercent = (state) => {
   const pendingBarProgress = `${totalPendinTask}/${totalTask}`;
   const processingBarProgress = `${totalProcessingTask}/${totalTask}`;
   const doneBarProgress = `${totalDoneTask}/${totalTask}`;
+
   const totalTaskString = totalTask.toString();
   const totalDoneString = totalDoneTask.toString();
 

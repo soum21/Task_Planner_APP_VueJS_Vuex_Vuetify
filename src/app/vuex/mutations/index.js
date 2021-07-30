@@ -10,18 +10,6 @@ const ADD_TASK = (state, payload) => {
   state.tasks.push(newTask);
 };
 
-const SET_PENDING_TASKS_LIST = (state, payload) => {
-  state.tasksPending = payload;
-};
-
-const SET_PROCESSING_TASKS_LIST = (state, payload) => {
-  state.tasksProcessing = payload;
-};
-
-const SET_DONE_TASKS_LIST = (state, payload) => {
-  state.tasksDone = payload;
-};
-
 const EDIT_TASK = (state, payload) => {
   const { id, board, description, estimatedTime, title } = payload;
   const totalArray = getItemByName(state.taskList, board);
@@ -42,9 +30,6 @@ const DELETE_TASK = (state, payload) => {
 
 export default {
   ADD_TASK,
-  SET_PENDING_TASKS_LIST,
-  SET_PROCESSING_TASKS_LIST,
-  SET_DONE_TASKS_LIST,
   EDIT_TASK,
   DELETE_TASK
 };
