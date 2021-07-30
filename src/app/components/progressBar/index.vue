@@ -1,6 +1,6 @@
 <template>
   <v-progress-linear v-model="progressData" color="green lighten-1" height="30">
-    <strong>{{ Math.floor(progressData) }}%</strong>
+    <strong>{{ Math.floor(progressData) }}% (Done {{ totalDone }} out of {{ totalTask }})</strong>
   </v-progress-linear>
 </template>
 
@@ -8,7 +8,9 @@
 export default {
   name: 'ProgressBar',
   props: {
-    progressData: Number
+    progressData: Number,
+    totalDone: String,
+    totalTask: String
   },
   setup() {}
 };
