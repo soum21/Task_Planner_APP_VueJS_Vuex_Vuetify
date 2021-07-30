@@ -1,48 +1,37 @@
-const doneTasks = (state) => {
-  return state.tasksDone;
-};
-
-const pendingTasks = (state) => {
-  return state.tasksPending;
-};
-
-const processingTasks = (state) => {
-  return state.tasksProcessing;
-};
-
-const pendingBarDetails = (state) => {
-  const totalPending = state.tasksPending.length;
-  const totalTasks = state.tasksDone.concat(state.tasksProcessing, state.tasksPending).length;
-  const details = `${totalPending}/${totalTasks}`;
-  return details;
-};
-
-const processingBarDetails = (state) => {
-  const totalProcessing = state.tasksProcessing.length;
-  const totalTasks = state.tasksDone.concat(state.tasksProcessing, state.tasksPending).length;
-  const details = `${totalProcessing}/${totalTasks}`;
-  return details;
-};
-
-const doneBarDetails = (state) => {
-  const totalDone = state.tasksDone.length;
-  const totalTasks = state.tasksDone.concat(state.tasksProcessing, state.tasksPending).length;
-  const details = `${totalDone}/${totalTasks}`;
-  return details;
-};
+import { getItemByName } from '../../utils';
 
 const getProgressPercent = (state) => {
-  const totalDone = state.tasksDone.length;
-  const totalTasks = state.tasksDone.concat(state.tasksProcessing, state.tasksPending).length;
-  const progressPercentage = (totalDone / totalTasks) * 100;
-  return progressPercentage;
+  const totalDoneList = getItemByName(state.taskList, 'Done');
+  const totalPendingList = getItemByName(state.taskList, 'Pending');
+  const totalProcessingList = getItemByName(state.taskList, 'Processing');
+
+  const totalDoneTask = totalDoneList.tasks.length;
+  const totalPendinTask = totalPendingList.tasks.length;
+  const totalProcessingTask = totalProcessingList.tasks.length;
+  const totalTask = totalDoneTask + totalPendinTask + totalProcessingTask;
+
+  const progressPercentage = (totalDoneTask / totalTask) * 100;
+  const processingTaskPercentage = (totalProcessingTask / totalTask) * 100;
+  const pendingTaskPercentage = (totalPendinTask / totalTask) * 100;
+
+  const pendingBarProgress = `${totalPendinTask}/${totalTask}`;
+  const processingBarProgress = `${totalProcessingTask}/${totalTask}`;
+  const doneBarProgress = `${totalDoneTask}/${totalTask}`;
+  return {
+    progressPercentage,
+    pendingBarProgress,
+    processingBarProgress,
+    doneBarProgress,
+    processingTaskPercentage,
+    pendingTaskPercentage
+  };
 };
+
+const getAllTasks = (state) => {
+  return state.taskList;
+};
+
 export default {
-  doneTasks,
-  pendingTasks,
-  processingTasks,
   getProgressPercent,
-  pendingBarDetails,
-  doneBarDetails,
-  processingBarDetails
+  getAllTasks
 };

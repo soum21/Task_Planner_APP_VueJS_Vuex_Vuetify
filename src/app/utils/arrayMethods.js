@@ -7,4 +7,10 @@ const deleteItemFromArray = (array, id) => {
   let newArray = array.filter((task) => task.id !== id);
   return newArray;
 };
-export { getItemInArray, deleteItemFromArray };
+
+const getItemByName = (array, name) => {
+  let item = array.find((task) => task.name === name);
+  return item;
+};
+
+export { getItemInArray, deleteItemFromArray, getItemByName };

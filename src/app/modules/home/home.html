@@ -1,80 +1,43 @@
 <v-app>
   <v-container>
     <!-- Progress Bar Start -->
-    
+
     <div>
       <span class="text-h6">Progress</span>
-      <ProgressBar :progressData="totalProgress" />
+      <ProgressBar :progressData="totalProgress.progressPercentage" />
     </div>
     <!-- Progress Bar End -->
 
     <!-- Search And Add Area -->
-    <TaskCard />
     <!-- Search And Add Area End -->
 
     <!-- Dragable List Area -->
     <v-row justify="space-around">
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="4" v-for="tasks in taskList" :key="tasks.id">
         <v-sheet class="columnWrapper" elevation="2">
           <div class="d-flex justify-center mb-6">
-            <span class="text-h6 pt-2 px-1">Pending</span>
-            <span class="text-h6 pt-2 px-1">({{pendingBarDetails}})</span>
-            <span class="text-h6 pt-2 px-1">({{taskPercent}}%)</span>
+            <span class="text-h6 pt-2 px-1">{{tasks.name}}</span>
+            <span class="text-h6 pt-2 px-1"
+              >({{tasks.name === 'Pending' ? totalProgress.pendingBarProgress : tasks.name === 'Processing' ?
+              totalProgress.processingBarProgress : tasks.name === 'Done' ? totalProgress.doneBarProgress : '' }})</span
+            >
+            <span class="text-h6 pt-2 px-1">({{tasks.name === 'Pending' ? pendingPercent : tasks.name === 'Processing' ?
+              processingPercent : tasks.name === 'Done' ? taskPercent : ''}}%)</span>
           </div>
           <draggable
-            v-model="tasksPending"
-            group="task"
+            v-model="tasks.tasks"
+            group="taskList"
             @start="drag=true"
             @end="drag=false"
             :emptyInsertThreshold="500"
           >
             <transition-group>
-              <div v-for="(element,index) in tasksPending" :key="element.id">
-                <TaskCard :item="element" :board="'pending'" />
+              <div v-for="(element,index) in tasks.tasks" :key="element.id">
+                <TaskCard :item="element" :board="tasks.name" />
               </div>
             </transition-group>
           </draggable>
-          <div v-if="tasksPending.length < 1"><NoItemsCard /></div>
-        </v-sheet>
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-sheet class="columnWrapper" elevation="2">
-          <div class="d-flex justify-center mb-6">
-            <span class="text-h6 pt-2 px-1">Processing</span>
-            <span class="text-h6 pt-2 px-1">({{processingBarDetails}})</span>
-            <span class="text-h6 pt-2 px-1">({{taskPercent}}%)</span>
-          </div>
-          <draggable
-            v-model="tasksProcessing"
-            group="task"
-            @start="drag=true"
-            @end="drag=false"
-            :emptyInsertThreshold="500"
-          >
-            <transition-group>
-              <div v-for="(element,index) in tasksProcessing" :key="element.id">
-                <TaskCard :item="element" :board="'processing'" />
-              </div>
-            </transition-group>
-          </draggable>
-          <div v-if="tasksProcessing.length < 1"><NoItemsCard /></div>
-        </v-sheet>
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-sheet class="columnWrapper" elevation="2">
-          <div class="d-flex justify-center mb-6">
-            <span class="text-h6 pt-2 px-1">Done</span>
-            <span class="text-h6 pt-2 px-1">({{doneBarDetails}})</span>
-            <span class="text-h6 pt-2 px-1">({{taskPercent}}%)</span>
-          </div>
-          <draggable v-model="tasksDone" group="task" @start="drag=true" @end="drag=false" :emptyInsertThreshold="500">
-            <transition-group>
-              <div v-for="(element,index) in tasksDone" :key="element.id">
-                <TaskCard :item="element" :board="'done'" />
-              </div>
-            </transition-group>
-          </draggable>
-          <div v-if="tasksDone.length < 1"><NoItemsCard /></div>
+          <div v-if="tasks.tasks.length < 1"><NoItemsCard /></div>
         </v-sheet>
       </v-col>
     </v-row>

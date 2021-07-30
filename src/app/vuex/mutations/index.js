@@ -1,4 +1,4 @@
-import { getItemInArray, deleteItemFromArray } from '../../utils';
+import { getItemInArray, deleteItemFromArray, getItemByName } from '../../utils';
 
 const ADD_TASK = (state, payload) => {
   const newTask = {
@@ -24,46 +24,20 @@ const SET_DONE_TASKS_LIST = (state, payload) => {
 
 const EDIT_TASK = (state, payload) => {
   const { id, board, description, estimatedTime, title } = payload;
-  if (board === 'processing') {
-    let item = getItemInArray(state.tasksProcessing, id);
-    if (item) {
-      item.title = title;
-      item.description = description;
-      item.estimatedTime = estimatedTime;
-    }
-  }
-  if (board === 'pending') {
-    let item = getItemInArray(state.tasksPending, id);
-    if (item) {
-      item.title = title;
-      item.description = description;
-      item.estimatedTime = estimatedTime;
-    }
-  }
-  if (board === 'done') {
-    let item = getItemInArray(state.tasksDone, id);
-    if (item) {
-      item.title = title;
-      item.description = description;
-      item.estimatedTime = estimatedTime;
-    }
+  const totalArray = getItemByName(state.taskList, board);
+  let item = getItemInArray(totalArray.tasks, id);
+  if (item) {
+    item.title = title;
+    item.description = description;
+    item.estimatedTime = estimatedTime;
   }
 };
 
 const DELETE_TASK = (state, payload) => {
   const { id, board } = payload;
-  if (board === 'processing') {
-    let newArray = deleteItemFromArray(state.tasksProcessing, id);
-    state.tasksProcessing = newArray;
-  }
-  if (board === 'pending') {
-    let newArray = deleteItemFromArray(state.tasksPending, id);
-    state.tasksPending = newArray;
-  }
-  if (board === 'done') {
-    let newArray = deleteItemFromArray(state.tasksDone, id);
-    state.tasksDone = newArray;
-  }
+  const totalArray = getItemByName(state.taskList, board);
+  let newArray = deleteItemFromArray(totalArray.tasks, id);
+  totalArray.tasks = newArray;
 };
 
 export default {
