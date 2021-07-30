@@ -9,11 +9,7 @@ export default {
     return {
       taskPercent: 0,
       pendingPercent: 0,
-      processingPercent: 0,
-      options: {
-        dropzoneSelector: '.drag-inner-list',
-        draggableSelector: '.drag-item'
-      }
+      processingPercent: 0
     };
   },
   components: {
