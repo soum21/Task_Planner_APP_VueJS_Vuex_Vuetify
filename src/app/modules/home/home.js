@@ -9,7 +9,11 @@ export default {
     return {
       taskPercent: 0,
       pendingPercent: 0,
-      processingPercent: 0
+      processingPercent: 0,
+      search: '',
+      items: [],
+      allTasks: [],
+      found: null
     };
   },
   components: {
@@ -18,9 +22,18 @@ export default {
     ProgressBar,
     NoItemsCard
   },
+  mounted() {
+    this.items = this.$store.getters.getAllTasks;
+    this.items.forEach((item) => {
+      item.tasks.forEach((i) => {
+        this.allTasks.push(i);
+      });
+    });
+  },
   computed: {
     taskList: {
       get() {
+        this.item = this.$store.getters.getAllTasks;
         return this.$store.getters.getAllTasks;
       },
       set(value) {
@@ -32,6 +45,11 @@ export default {
       this.pendingPercent = Math.floor(this.$store.getters.getProgressPercent.pendingTaskPercentage);
       this.processingPercent = Math.floor(this.$store.getters.getProgressPercent.processingTaskPercentage);
       return this.$store.getters.getProgressPercent;
+    },
+    handleChange() {
+      let found = this.allTasks.filter((task) => task.title === this.search || task.description === this.search);
+      this.found = found[0];
+      return this.found;
     }
   },
   methods: {

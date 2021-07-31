@@ -30,6 +30,10 @@ export default {
     board: {
       type: String,
       default: null
+    },
+    found: {
+      type: Object,
+      default: null
     }
   },
   mounted() {
@@ -53,6 +57,17 @@ export default {
     },
     buttonClass() {
       return this.valid ? 'success mx-0 mt-3' : 'grey mx-0 mt-3';
+    },
+    getHighlight() {
+      if (!this.found) {
+        return '';
+      } else {
+        if (this.found.title === this.title || this.found.description === this.description) {
+          return 'yellow lighten-4';
+        } else {
+          return '';
+        }
+      }
     }
   },
   methods: {

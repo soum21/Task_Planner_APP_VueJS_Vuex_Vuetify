@@ -1,4 +1,4 @@
-<div class="cardContainer">
+<div class="cardContainer" :class="getHighlight">
   <v-container class="my-1">
     <v-card v-if="shouldDisplay" class="ma-3">
       <v-card-title class="h6 pl-2" :class="cardHeaderClass">
