@@ -1,10 +1,12 @@
 import AttachmentModal from '../../components/attachmentModal';
+import Comments from '../../components/comments';
 export default {
   name: 'Detail',
   data() {
     return {
       time: '',
       files: [],
+      comments: [],
       valid: false,
       detailData: [],
       modal: false,
@@ -17,7 +19,8 @@ export default {
     };
   },
   components: {
-    AttachmentModal
+    AttachmentModal,
+    Comments
   },
   mounted() {
     const { board, id } = this.$route.params;
@@ -29,7 +32,7 @@ export default {
     this.title = this.detailData.title;
     this.description = this.detailData.description;
     this.files = this.detailData.files;
-    console.log(this.files);
+    this.comments = this.detailData.comments;
   },
   computed: {
     cardHeaderClass() {
@@ -80,6 +83,16 @@ export default {
       this.$store.dispatch('deleteTask', data);
       this.deleteDialog = false;
       this.$router.go(-1);
+    },
+    handleComment(comment) {
+      console.log(comment);
+      const { board, id } = this.$route.params;
+      const data = {
+        comment: comment,
+        parentId: parseInt(id),
+        board: board
+      };
+      this.$store.dispatch('addComment', data);
     }
   }
 };

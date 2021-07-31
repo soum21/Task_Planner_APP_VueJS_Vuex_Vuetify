@@ -18,6 +18,12 @@ const stateObject = {
               type: 'application/pdf',
               webkitRelativePath: ''
             }
+          ],
+          comments: [
+            {
+              id: 1,
+              text: 'This is a Task should be completed within time.'
+            }
           ]
         },
         {
@@ -42,6 +48,12 @@ const stateObject = {
               type: 'application/pdf',
               webkitRelativePath: ''
             }
+          ],
+          comments: [
+            {
+              id: 1,
+              text: 'This is a Task should be completed within time.'
+            }
           ]
         },
         {
@@ -57,6 +69,12 @@ const stateObject = {
               size: 988,
               type: 'application/pdf',
               webkitRelativePath: ''
+            }
+          ],
+          comments: [
+            {
+              id: 1,
+              text: 'This is a Task should be completed within time.'
             }
           ]
         }
@@ -96,6 +114,20 @@ const stateObject = {
               type: 'application/pdf',
               webkitRelativePath: ''
             }
+          ],
+          comments: [
+            {
+              id: 1,
+              text: 'This is a Task should be completed within time.'
+            },
+            {
+              id: 2,
+              text: 'This is a Task should be completed within time.'
+            },
+            {
+              id: 3,
+              text: 'This is a Task should be completed within time.'
+            }
           ]
         },
         {
@@ -120,14 +152,21 @@ const stateObject = {
               type: 'application/pdf',
               webkitRelativePath: ''
             }
-          ]
+          ],
+          comments: []
         },
         {
           id: 9,
           title: 'Task 12312343',
           description: 'GenQWEQWeral Task 3',
           estimatedTime: '12:16AM',
-          files: []
+          files: [],
+          comments: [
+            {
+              id: 1,
+              text: 'This is a comment.'
+            }
+          ]
         }
       ]
     },
@@ -157,7 +196,8 @@ const stateObject = {
               type: 'application/pdf',
               webkitRelativePath: ''
             }
-          ]
+          ],
+          comments: []
         },
         {
           id: 2,
@@ -181,6 +221,12 @@ const stateObject = {
               type: 'application/pdf',
               webkitRelativePath: ''
             }
+          ],
+          comments: [
+            {
+              id: 1,
+              text: 'This is a comment. This title must be changed.'
+            }
           ]
         },
         {
@@ -197,7 +243,8 @@ const stateObject = {
               type: 'application/pdf',
               webkitRelativePath: ''
             }
-          ]
+          ],
+          comments: []
         }
       ]
     }

@@ -2,6 +2,7 @@
   <v-container fluid fill-height>
     <v-sheet class="columnWrapper" elevation="2">
       <v-card class="ma-3" elevation="3">
+
         <v-card-title class="h6 pl-2 justify-space-around" :class="cardHeaderClass">
           <v-row no-gutters class="rowContainer">
             <v-col class="d-flex justify-start font-weight-medium" cols="6" sm="6">
@@ -30,6 +31,7 @@
               :disabled="viewEditOption"
             ></v-text-field>
           </div>
+
           <div class="ma-5">
             <v-textarea
               label="Description"
@@ -40,6 +42,7 @@
               :disabled="viewEditOption"
             ></v-textarea>
           </div>
+
           <div class="ma-5">
             <v-checkbox label="Edit Title and Description" @change="displayEditOption" v-model="checked"> </v-checkbox>
           </div>
@@ -63,18 +66,29 @@
               prepend-icon="mdi-clock-time-four-outline"
             ></v-text-field>
           </div>
-       
+
           <div v-show="!modal" class="ma-5 inputDiv">
             <a @click="openModal">View Attachments</a>
           </div>
+
           <div v-show="modal && files.length > 0">
-            <AttachmentModal :modal="modal" :attachments="files" :board="$route.params.board" :parentId="$route.params.id" @toggleModal="toggleModal($event)" />
+            <AttachmentModal
+              :modal="modal"
+              :attachments="files"
+              :board="$route.params.board"
+              :parentId="$route.params.id"
+              @toggleModal="toggleModal($event)"
+            />
           </div>
+
+          <div class="ma-5">
+            <Comments :comments="comments" @handleComment="handleComment($event)"/>
+          </div>
+
           <v-dialog v-model="deleteDialog" persistent max-width="290">
             <v-card>
               <v-card-title class="text-h5">Are you sure you want to delete ? </v-card-title>
-              <v-card-text>Deleting it will redirect to homepage.</v-card-text
-              >
+              <v-card-text>Deleting it will redirect to homepage.</v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="green darken-1" text @click="doDelete"> Yes </v-btn>

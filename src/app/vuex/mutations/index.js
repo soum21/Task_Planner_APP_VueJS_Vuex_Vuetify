@@ -43,10 +43,32 @@ const ADD_FILE = (state, payload) => {
   });
 };
 
+const ADD_COMMENT = (state, payload) => {
+  const { comment, parentId, board } = payload;
+  const totalArray = getItemByName(state.taskList, board);
+  let item = getItemInArray(totalArray.tasks, parentId);
+  let lastElement = item.comments[item.comments.length - 1];
+  if (lastElement) {
+    const id = lastElement.id + 1;
+    let data = {
+      id: id,
+      text: comment
+    };
+    item.comments.push(data);
+  } else {
+    let data = {
+      id: 1,
+      text: comment
+    };
+    item.comments.push(data);
+  }
+};
+
 export default {
   ADD_TASK,
   EDIT_TASK,
   DELETE_TASK,
   DELETE_FILE,
-  ADD_FILE
+  ADD_FILE,
+  ADD_COMMENT
 };

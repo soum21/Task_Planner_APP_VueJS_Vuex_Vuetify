@@ -23,7 +23,7 @@
           </v-col>
         </v-row>
         <v-row class="ma-3" align="center" justify="center">
-          <v-col cols="12">
+          <v-col class="ma-3" cols="12">
             <v-file-input
               v-model="files"
               :color="setColor"

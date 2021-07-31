@@ -18,4 +18,8 @@ const deleteFile = (context, payload) => {
 const addFile = (context, payload) => {
   context.commit(types.ADD_FILE, payload);
 };
-export default { addTask, editTask, deleteTask, deleteFile, addFile };
+
+const addComment = (context, payload) => {
+  context.commit(types.ADD_COMMENT, payload);
+};
+export default { addTask, editTask, deleteTask, deleteFile, addFile, addComment };
