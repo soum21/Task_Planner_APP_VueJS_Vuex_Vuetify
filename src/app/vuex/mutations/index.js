@@ -24,12 +24,29 @@ const EDIT_TASK = (state, payload) => {
 const DELETE_TASK = (state, payload) => {
   const { id, board } = payload;
   const totalArray = getItemByName(state.taskList, board);
-  let newArray = deleteItemFromArray(totalArray.tasks, id);
-  totalArray.tasks = newArray;
+  deleteItemFromArray(totalArray.tasks, id);
+};
+
+const DELETE_FILE = (state, payload) => {
+  const { board, parentId, fileId } = payload;
+  const totalArray = getItemByName(state.taskList, board);
+  let item = getItemInArray(totalArray.tasks, parentId);
+  deleteItemFromArray(item.files, fileId);
+};
+
+const ADD_FILE = (state, payload) => {
+  const { files, parentId, board } = payload;
+  const totalArray = getItemByName(state.taskList, board);
+  let item = getItemInArray(totalArray.tasks, parentId);
+  files.forEach((file) => {
+    item.files.push(file);
+  });
 };
 
 export default {
   ADD_TASK,
   EDIT_TASK,
-  DELETE_TASK
+  DELETE_TASK,
+  DELETE_FILE,
+  ADD_FILE
 };

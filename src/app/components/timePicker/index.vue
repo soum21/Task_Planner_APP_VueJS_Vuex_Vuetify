@@ -36,7 +36,6 @@ export default {
   watch: {
     itemTime(curr, prev) {
       if (prev !== curr) {
-        console.log('Prop changed: ', curr, ' | was: ', prev);
         this.itemTime = curr;
         this.time2 = this.itemTime;
       }

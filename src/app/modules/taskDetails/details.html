@@ -1,0 +1,89 @@
+<v-app>
+  <v-container fluid fill-height>
+    <v-sheet class="columnWrapper" elevation="2">
+      <v-card class="ma-3" elevation="3">
+        <v-card-title class="h6 pl-2 justify-space-around" :class="cardHeaderClass">
+          <v-row no-gutters class="rowContainer">
+            <v-col class="d-flex justify-start font-weight-medium" cols="6" sm="6">
+              <span class="cardTitle">{{detailData.title}} </span>
+            </v-col>
+            <v-col class="d-flex justify-end" cols="6" sm="6">
+              <div>
+                <v-btn text icon color="grey darken-1" @click="deleteDialog = true">
+                  <v-icon x-large>mdi-delete-forever</v-icon>
+                </v-btn>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card-title>
+
+        <v-spacer></v-spacer>
+
+        <v-form class="px-1 form">
+          <div class="ma-5">
+            <v-text-field
+              label="Title"
+              v-model="title"
+              :value="detailData.title"
+              hide-details="auto"
+              prepend-icon="mdi-pin"
+              :disabled="viewEditOption"
+            ></v-text-field>
+          </div>
+          <div class="ma-5">
+            <v-textarea
+              label="Description"
+              v-model="description"
+              rows="4"
+              prepend-icon="mdi-text"
+              :value="detailData.description"
+              :disabled="viewEditOption"
+            ></v-textarea>
+          </div>
+          <div class="ma-5">
+            <v-checkbox label="Edit Title and Description" @change="displayEditOption" v-model="checked"> </v-checkbox>
+          </div>
+
+          <div class="ma-5" v-show="!viewEditOption">
+            <v-row no-gutters class="rowContainer">
+              <v-col class="d-flex justify-end" cols="6" sm="6">
+                <v-btn text class="success mx-2 mb-3" width="100px" @click="save">Save</v-btn>
+              </v-col>
+              <v-col class="d-flex justify-start" cols="6" sm="6">
+                <v-btn text class="error mx-2 mb-3" width="100px" @click="cancel">Cancel</v-btn>
+              </v-col>
+            </v-row>
+          </div>
+
+          <div class="ma-5">
+            <v-text-field
+              v-model="detailData.estimatedTime"
+              label="Estimated Time"
+              readonly
+              prepend-icon="mdi-clock-time-four-outline"
+            ></v-text-field>
+          </div>
+       
+          <div v-show="!modal" class="ma-5 inputDiv">
+            <a @click="openModal">View Attachments</a>
+          </div>
+          <div v-show="modal && files.length > 0">
+            <AttachmentModal :modal="modal" :attachments="files" :board="$route.params.board" :parentId="$route.params.id" @toggleModal="toggleModal($event)" />
+          </div>
+          <v-dialog v-model="deleteDialog" persistent max-width="290">
+            <v-card>
+              <v-card-title class="text-h5">Are you sure you want to delete ? </v-card-title>
+              <v-card-text>Deleting it will redirect to homepage.</v-card-text
+              >
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" text @click="doDelete"> Yes </v-btn>
+                <v-btn color="green darken-1" text @click="deleteDialog = false"> No </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-form>
+      </v-card>
+    </v-sheet>
+  </v-container>
+</v-app>

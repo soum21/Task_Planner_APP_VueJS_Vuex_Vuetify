@@ -4,8 +4,11 @@ const getItemInArray = (array, id) => {
 };
 
 const deleteItemFromArray = (array, id) => {
-  let newArray = array.filter((task) => task.id !== id);
-  return newArray;
+  let index = array.map((file) => file.id).indexOf(id);
+  if (index > -1) {
+    array.splice(index, 1);
+  }
+  return array;
 };
 
 const getItemByName = (array, name) => {

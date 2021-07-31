@@ -10,7 +10,8 @@ export default {
       description: '',
       time: '',
       valid: false,
-      titleRules: [(v) => !!v || 'Title is required']
+      titleRules: [(v) => !!v || 'Title is required', (v) => (v && v.length < 20) || 'Maximum 20 charecters'],
+      descRules: [(v) => !!v || 'Description is required', (v) => (v && v.length < 150) || 'Maximum 150 charecters']
     };
   },
   components: {
@@ -48,11 +49,10 @@ export default {
     }
   },
   methods: {
-    gotoDetail(i) {
-      console.log(i);
+    gotoDetail(id, board) {
+      this.$router.push({ path: `/detail/${board}/${id}` });
     },
-    doEdit(id) {
-      console.log(id);
+    doEdit() {
       this.formDisable = false;
     },
     doDelete(id, board) {

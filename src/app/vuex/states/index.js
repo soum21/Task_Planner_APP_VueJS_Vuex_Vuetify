@@ -8,19 +8,57 @@ const stateObject = {
           id: 6,
           title: 'Task asdasd1',
           description: 'GeneQWEQWEral Task',
-          estimatedTime: '9:10PM'
+          estimatedTime: '9:10PM',
+          files: [
+            {
+              id: 1,
+              name: 'Harmonic_sum.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            }
+          ]
         },
         {
           id: 5,
           title: 'Task asdasd2',
           description: 'GenASDASDWQEeral Task 2',
-          estimatedTime: '04:36PM'
+          estimatedTime: '04:36PM',
+          files: [
+            {
+              id: 1,
+              name: 'Harmonic_sum.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            },
+            {
+              id: 2,
+              name: 'newfile.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            }
+          ]
         },
         {
           id: 4,
           title: 'Task dasd3',
           description: 'GeneSFASSAfal Task 3',
-          estimatedTime: '5:30PM'
+          estimatedTime: '5:30PM',
+          files: [
+            {
+              id: 1,
+              name: 'somefile.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            }
+          ]
         }
       ]
     },
@@ -32,19 +70,64 @@ const stateObject = {
           id: 7,
           title: 'Task 112312',
           description: 'Gen$@$eralsad Task',
-          estimatedTime: '11:16AM'
+          estimatedTime: '11:16AM',
+          files: [
+            {
+              id: 1,
+              name: 'somefile.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            },
+            {
+              id: 2,
+              name: 'somefile.pdf',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            },
+            {
+              id: 3,
+              name: 'somefasile.pdf',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            }
+          ]
         },
         {
           id: 8,
           title: 'Task 12312',
           description: 'GeneASDASral Task 2',
-          estimatedTime: '11:20PM'
+          estimatedTime: '11:20PM',
+          files: [
+            {
+              id: 1,
+              name: 'somefile.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            },
+            {
+              id: 2,
+              name: 'somefile.pdf',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            }
+          ]
         },
         {
           id: 9,
           title: 'Task 12312343',
           description: 'GenQWEQWeral Task 3',
-          estimatedTime: '12:16AM'
+          estimatedTime: '12:16AM',
+          files: []
         }
       ]
     },
@@ -56,19 +139,65 @@ const stateObject = {
           id: 3,
           title: 'Task afsasf1',
           description: 'Gener12312aasfal Task',
-          estimatedTime: '4:15PM'
+          estimatedTime: '4:15PM',
+          files: [
+            {
+              id: 1,
+              name: 'somefile.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            },
+            {
+              id: 2,
+              name: 'somefile.pdf',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            }
+          ]
         },
         {
           id: 2,
           title: 'Task vvsdvfd2',
           description: 'Genadasderal Task 2',
-          estimatedTime: '12:10PM'
+          estimatedTime: '12:10PM',
+          files: [
+            {
+              id: 1,
+              name: 'somefile.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            },
+            {
+              id: 2,
+              name: 'somefile.pdf',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            }
+          ]
         },
         {
           id: 1,
           title: 'Task qe1243',
           description: 'Gener123123al Task 3',
-          estimatedTime: '3:16PM'
+          estimatedTime: '3:16PM',
+          files: [
+            {
+              id: 1,
+              name: 'somefile.java',
+              lastModified: 1627270029725,
+              size: 988,
+              type: 'application/pdf',
+              webkitRelativePath: ''
+            }
+          ]
         }
       ]
     }

@@ -1,4 +1,4 @@
-import { getItemByName } from '../../utils';
+import { getItemByName, getItemInArray } from '../../utils';
 
 const getProgressPercent = (state) => {
   const totalDoneList = getItemByName(state.taskList, 'Done');
@@ -37,7 +37,16 @@ const getAllTasks = (state) => {
   return state.taskList;
 };
 
+const getDetails =
+  (state) =>
+  ({ board, id }) => {
+    const totalArray = getItemByName(state.taskList, board);
+    let item = getItemInArray(totalArray.tasks, id);
+    return item;
+  };
+
 export default {
   getProgressPercent,
-  getAllTasks
+  getAllTasks,
+  getDetails
 };

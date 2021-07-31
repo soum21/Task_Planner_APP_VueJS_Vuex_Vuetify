@@ -8,12 +8,12 @@
           </v-col>
           <v-col class="d-flex justify-end" cols="6" sm="6">
             <div>
-              <v-btn text icon color="grey darken-1" @click="gotoDetail(item.id)">
+              <v-btn text icon color="grey darken-1" @click="gotoDetail(item.id,board)">
                 <v-icon>mdi-briefcase</v-icon>
               </v-btn>
             </div>
             <div>
-              <v-btn text icon color="grey darken-1" @click="doEdit(item.id)">
+              <v-btn text icon color="grey darken-1" @click="doEdit">
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
             </div>
@@ -38,7 +38,7 @@
             ></v-text-field>
           </v-list-item>
           <v-list-item>
-            <v-textarea label="Description" rows="1" v-model="description" value="item.description"></v-textarea>
+            <v-textarea label="Description" rows="1" v-model="description" value="item.description" :rules="descRules"></v-textarea>
           </v-list-item>
           <v-list-item>
             <TimePicker @changeTime="changeTime($event)" :itemTime="time" />
