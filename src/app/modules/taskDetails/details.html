@@ -63,12 +63,13 @@
               v-model="detailData.estimatedTime"
               label="Estimated Time"
               readonly
+              disabled
               prepend-icon="mdi-clock-time-four-outline"
             ></v-text-field>
           </div>
 
           <div v-show="!modal" class="ma-5 inputDiv">
-            <a @click="openModal">View Attachments</a>
+            <a @click="openAttachmentModal">View Attachments</a>
           </div>
 
           <div v-show="modal && files.length > 0">

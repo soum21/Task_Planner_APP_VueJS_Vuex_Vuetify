@@ -34,5 +34,9 @@ export default {
       return this.$store.getters.getProgressPercent;
     }
   },
-  methods: {}
+  methods: {
+    sortList(name) {
+      this.$store.dispatch('sortList', name);
+    }
+  }
 };

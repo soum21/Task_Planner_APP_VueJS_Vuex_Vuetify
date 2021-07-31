@@ -1,4 +1,4 @@
-import { getItemInArray, deleteItemFromArray, getItemByName } from '../../utils';
+import { getItemInArray, deleteItemFromArray, getItemByName, sortArray } from '../../utils';
 
 const ADD_TASK = (state, payload) => {
   const newTask = {
@@ -64,11 +64,27 @@ const ADD_COMMENT = (state, payload) => {
   }
 };
 
+const SORT_LIST = (state, payload) => {
+  if (payload === 'Processing') {
+    const totalProcessingList = getItemByName(state.taskList, 'Processing');
+    sortArray(totalProcessingList.tasks);
+  }
+  if (payload === 'Pending') {
+    const totalPendingList = getItemByName(state.taskList, 'Pending');
+    sortArray(totalPendingList.tasks);
+  }
+  if (payload === 'Done') {
+    const totalDoneList = getItemByName(state.taskList, 'Done');
+    sortArray(totalDoneList.tasks);
+  }
+};
+
 export default {
   ADD_TASK,
   EDIT_TASK,
   DELETE_TASK,
   DELETE_FILE,
   ADD_FILE,
-  ADD_COMMENT
+  ADD_COMMENT,
+  SORT_LIST
 };

@@ -4,13 +4,27 @@
 
     <div>
       <span class="text-h6">Progress</span>
-      <ProgressBar :progressData="totalProgress.progressPercentage" :totalDone="totalProgress.totalDoneString" :totalTask="totalProgress.totalTaskString"/>
+      <ProgressBar
+        :progressData="totalProgress.progressPercentage"
+        :totalDone="totalProgress.totalDoneString"
+        :totalTask="totalProgress.totalTaskString"
+      />
     </div>
     <!-- Progress Bar End -->
 
     <!-- Search And Add Area -->
-    <!-- Search And Add Area End -->
+    <v-sheet class="columnWrapper" elevation="2">
+      <v-card class="d-flex justify-end mb-6" flat tile>
+        <!-- <v-btn elevation="2" class="ma-3" @click="sortList">Sort</v-btn> -->
+        <v-btn elevation="2" class="ma-3">Search</v-btn>
+        <v-btn elevation="2" class="ma-3">Add</v-btn>
+      </v-card>
+    </v-sheet>
 
+    <!-- Search And Add Area End -->
+    <!-- Sort Area -->
+     
+    <!-- Sort Area End -->
     <!-- Dragable List Area -->
     <v-row justify="space-around">
       <v-col cols="12" md="4" v-for="tasks in taskList" :key="tasks.id">
@@ -21,9 +35,14 @@
               >({{tasks.name === 'Pending' ? totalProgress.pendingBarProgress : tasks.name === 'Processing' ?
               totalProgress.processingBarProgress : tasks.name === 'Done' ? totalProgress.doneBarProgress : '' }})</span
             >
-            <span class="text-h6 pt-2 px-1">({{tasks.name === 'Pending' ? pendingPercent : tasks.name === 'Processing' ?
-              processingPercent : tasks.name === 'Done' ? taskPercent : ''}}%)</span>
+            <span class="text-h6 pt-2 px-1"
+              >({{tasks.name === 'Pending' ? pendingPercent : tasks.name === 'Processing' ? processingPercent :
+              tasks.name === 'Done' ? taskPercent : ''}}%)</span
+            >
           </div>
+          <v-card class="d-flex justify-center mb-6" flat tile>
+            <v-btn  class="ma-3" @click="sortList(tasks.name)">Sort</v-btn>
+         </v-card>
           <draggable
             v-model="tasks.tasks"
             group="taskList"

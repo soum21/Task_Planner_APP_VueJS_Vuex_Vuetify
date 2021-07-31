@@ -22,4 +22,8 @@ const addFile = (context, payload) => {
 const addComment = (context, payload) => {
   context.commit(types.ADD_COMMENT, payload);
 };
-export default { addTask, editTask, deleteTask, deleteFile, addFile, addComment };
+
+const sortList = (context, payload) => {
+  context.commit(types.SORT_LIST, payload);
+};
+export default { addTask, editTask, deleteTask, deleteFile, addFile, addComment, sortList };

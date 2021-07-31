@@ -43,6 +43,30 @@
           <v-list-item>
             <TimePicker @changeTime="changeTime($event)" :itemTime="time" />
           </v-list-item>
+          <v-list-item>
+            <v-text-field
+            label="Attachments"
+            hide-details="auto"
+            v-model="attachments"
+            disabled
+            readonly
+          ></v-text-field>
+          </v-list-item>
+          <v-list-item>
+              <a @click.prevent="viewAttachment">View Attachments</a>
+          </v-list-item>
+
+          <div v-show="attachMentModal && files.length > 0">
+            <AttachmentModal
+            :modal="attachMentModal"
+            :attachments="files"
+            :board="board"
+            :parentId="item.id"
+            :doUpload="false"
+            @toggleModal="toggleModal($event)"
+            />
+          </div>
+
           <v-row no-gutters class="rowContainer" v-show="!formDisable">
             <v-col class="d-flex justify-center" cols="6" sm="6">
               <v-btn text :class="buttonClass" :disabled="!valid" width="100px" @click="submit(item.id, board)"

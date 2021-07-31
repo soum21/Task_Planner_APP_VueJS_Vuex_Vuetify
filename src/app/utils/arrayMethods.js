@@ -16,4 +16,7 @@ const getItemByName = (array, name) => {
   return item;
 };
 
-export { getItemInArray, deleteItemFromArray, getItemByName };
+const sortArray = (array) => {
+  array.sort((a, b) => b.id - a.id);
+};
+export { getItemInArray, deleteItemFromArray, getItemByName, sortArray };

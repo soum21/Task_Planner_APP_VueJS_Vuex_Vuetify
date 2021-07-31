@@ -44,7 +44,7 @@ export default {
     }
   },
   methods: {
-    openModal() {
+    openAttachmentModal() {
       this.modal = true;
     },
     displayEditOption() {

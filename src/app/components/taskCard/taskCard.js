@@ -1,4 +1,5 @@
 import TimePicker from '../timePicker';
+import AttachmentModal from '../../components/attachmentModal';
 
 export default {
   name: 'TaskCard',
@@ -11,11 +12,15 @@ export default {
       time: '',
       valid: false,
       titleRules: [(v) => !!v || 'Title is required', (v) => (v && v.length < 20) || 'Maximum 20 charecters'],
-      descRules: [(v) => !!v || 'Description is required', (v) => (v && v.length < 150) || 'Maximum 150 charecters']
+      descRules: [(v) => !!v || 'Description is required', (v) => (v && v.length < 150) || 'Maximum 150 charecters'],
+      attachments: 0,
+      files: [],
+      attachMentModal: false
     };
   },
   components: {
-    TimePicker
+    TimePicker,
+    AttachmentModal
   },
   props: {
     item: {
@@ -34,7 +39,9 @@ export default {
       this.title = this.item.title;
       this.description = this.item.description;
       this.time = this.item.estimatedTime ? this.item.estimatedTime : '';
+      this.attachments = this.item.files.length;
       this.shouldDisplay = true;
+      this.files = this.item.files;
     }
   },
   computed: {
@@ -87,6 +94,12 @@ export default {
     },
     cancel() {
       this.resetData();
+    },
+    viewAttachment() {
+      this.attachMentModal = true;
+    },
+    toggleModal() {
+      this.attachMentModal = false;
     }
   }
 };

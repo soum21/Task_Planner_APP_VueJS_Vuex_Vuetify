@@ -13,7 +13,7 @@
                     >{{ file.name }}
                   </span>
                 </v-col>
-                <v-col cols="6" sm="6">
+                <v-col cols="6" sm="6" v-show="doUpload">
                   <v-btn text icon color="grey darken-1" @click="deletefile(file.id)">
                     <v-icon>mdi-close</v-icon>
                   </v-btn>
@@ -23,7 +23,7 @@
           </v-col>
         </v-row>
         <v-row class="ma-3" align="center" justify="center">
-          <v-col class="ma-3" cols="12">
+          <v-col class="ma-3" cols="12" v-show="doUpload">
             <v-file-input
               v-model="files"
               :color="setColor"
@@ -42,7 +42,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn :class="buttonColor" color="white" text @click="handleUpload"> Upload </v-btn>
+        <v-btn :class="buttonColor" color="white" text @click="handleUpload" v-show="doUpload"> Upload </v-btn>
         <v-btn :class="setColor" color="white" text @click="handleClick"> Close </v-btn>
       </v-card-actions>
     </v-card>
@@ -60,8 +60,12 @@ export default {
   props: {
     modal: Boolean,
     attachments: Array,
-    parentId: String,
-    board: String
+    parentId: [Number, String],
+    board: String,
+    doUpload: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     // a computed getter
