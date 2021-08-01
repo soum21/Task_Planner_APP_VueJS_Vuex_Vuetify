@@ -5,28 +5,32 @@
       <v-divider></v-divider>
       <v-card-text>
         <v-row class="ma-5">
-          <v-col v-for="(img, index) in attachments" :key="index" cols="4" sm="4" class="d-flex justify-center">
-            <v-img
-              :ref="'img'"
-              max-height="150"
-              max-width="150"
-              :src="img.base64"
-              class="img-fluid"
-              :title="'img' + f"
-            />
+          <v-col v-for="(img, index) in attachments" cols="6" md="4" :key="index" class="d-flex justify-center">
+            <v-card class="pa-2" outlined tile>
+              <v-img
+                :ref="'img'"
+                max-height="150"
+                max-width="150"
+                :src="img.base64"
+                class="img-fluid"
+                :title="'img' + f"
+              />
+            </v-card>
           </v-col>
         </v-row>
 
         <v-row class="ma-5">
-          <v-col v-for="(file, f) in files" :key="f" cols="4" sm="4" class="d-flex justify-center">
-            <v-img
-              :ref="'file'"
-              max-height="150"
-              max-width="150"
-              src="//placehold.it/400/99cc77"
-              class="img-fluid"
-              :title="'file' + f"
-            />
+          <v-col v-for="(file, f) in files" :key="f" cols="6" md="4" class="d-flex justify-center">
+            <v-card class="pa-2" outlined tile>
+              <v-img
+                :ref="'file'"
+                max-height="150"
+                max-width="150"
+                src="//placehold.it/400/99cc77"
+                class="img-fluid"
+                :title="'file' + f"
+              />
+            </v-card>
           </v-col>
         </v-row>
         <v-row class="ma-3" align="center" justify="center" v-show="doUpload">
