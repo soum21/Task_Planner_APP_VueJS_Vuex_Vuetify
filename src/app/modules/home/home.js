@@ -2,6 +2,7 @@ import draggable from 'vuedraggable';
 import TaskCard from '../../components/taskCard';
 import ProgressBar from '../../components/progressBar';
 import NoItemsCard from '../../components/noItemsCard';
+import AddTaskModal from '../../components/addTaskModal';
 
 export default {
   name: 'Home',
@@ -13,14 +14,16 @@ export default {
       search: '',
       items: [],
       allTasks: [],
-      found: null
+      found: null,
+      addTaskModal: false
     };
   },
   components: {
     draggable,
     TaskCard,
     ProgressBar,
-    NoItemsCard
+    NoItemsCard,
+    AddTaskModal
   },
   mounted() {
     this.items = this.$store.getters.getAllTasks;
@@ -55,6 +58,12 @@ export default {
   methods: {
     sortList(name) {
       this.$store.dispatch('sortList', name);
+    },
+    addTask() {
+      this.addTaskModal = true;
+    },
+    toggleModal() {
+      this.addTaskModal = false;
     }
   }
 };

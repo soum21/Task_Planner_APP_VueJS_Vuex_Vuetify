@@ -63,7 +63,7 @@ export default {
         return '';
       } else {
         if (this.found.title === this.title || this.found.description === this.description) {
-          return 'yellow lighten-4';
+          return 'yellow lighten-3';
         } else {
           return '';
         }

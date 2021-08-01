@@ -15,20 +15,24 @@
     <!-- Search And Add Area -->
     <v-sheet class="columnWrapper" elevation="2">
       <v-card class="d-flex justify-end mb-6" flat tile>
-        <!-- <v-btn elevation="2" class="ma-3" @click="sortList">Sort</v-btn> -->
-        <v-text-field
-        v-model="search"
-        label="Search"
-        class="ma-3"
-      ></v-text-field>
-        <v-btn elevation="2" class="ma-3">Add</v-btn>
+          <v-card-actions>
+            <v-text-field class="ma-3" v-model="search" label="Search"> </v-text-field>
+            <v-btn
+            class="ma-2"
+            outlined
+            color="blue"
+            @click.prevent="addTask"
+          >
+           + Add Task
+          </v-btn>
+          </v-card-actions>  
       </v-card>
     </v-sheet>
 
     <!-- Search And Add Area End -->
-    <!-- Sort Area -->
-     
-    <!-- Sort Area End -->
+    <div>
+      <AddTaskModal @toggleModal="toggleModal($event)" :showModal="addTaskModal" />
+    </div>
     <!-- Dragable List Area -->
     <v-row justify="space-around">
       <v-col cols="12" md="4" v-for="tasks in taskList" :key="tasks.id">
@@ -44,9 +48,9 @@
               tasks.name === 'Done' ? taskPercent : ''}}%)</span
             >
           </div>
-          <v-card class="d-flex justify-center mb-6" flat tile>
-            <v-btn  class="ma-3" @click="sortList(tasks.name)">Sort</v-btn>
-         </v-card>
+          <v-card class="d-flex justify-center mb-6" v-if="tasks.tasks.length > 1" flat tile>
+            <v-btn class="ma-3" @click="sortList(tasks.name)">Sort</v-btn>
+          </v-card>
           <draggable
             v-model="tasks.tasks"
             group="taskList"
@@ -56,8 +60,7 @@
           >
             <transition-group>
               <div v-for="(element,index) in tasks.tasks" :key="element.id">
-                <TaskCard :item="element" :board="tasks.name" :found="handleChange"/>
-              </div>
+                <TaskCard :item="element" :board="tasks.name" :found="handleChange" />
               </div>
             </transition-group>
           </draggable>
