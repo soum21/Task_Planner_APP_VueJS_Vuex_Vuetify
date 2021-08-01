@@ -5,14 +5,14 @@
       <v-divider></v-divider>
       <v-card-text>
         <v-row class="ma-5">
-          <v-col v-for="(file, f) in attachments" :key="f" cols="4" sm="4">
+          <v-col v-for="(img, index) in attachments" :key="index" cols="4" sm="4">
             <v-img
-              :ref="'file'"
+              :ref="'img'"
               max-height="150"
               max-width="150"
-              :src="file.base64"
+              :src="img.base64"
               class="img-fluid"
-              :title="'file' + f"
+              :title="'img' + f"
             />
           </v-col>
         </v-row>
