@@ -5,7 +5,7 @@
       <v-divider></v-divider>
       <v-card-text>
         <v-row class="ma-5">
-          <v-col v-for="(img, index) in attachments" :key="index" cols="4" sm="4">
+          <v-col v-for="(img, index) in attachments" :key="index" cols="4" sm="4" class="d-flex justify-center">
             <v-img
               :ref="'img'"
               max-height="150"
@@ -18,7 +18,7 @@
         </v-row>
 
         <v-row class="ma-5">
-          <v-col v-for="(file, f) in files" :key="f" cols="4" sm="4">
+          <v-col v-for="(file, f) in files" :key="f" cols="4" sm="4" class="d-flex justify-center">
             <v-img
               :ref="'file'"
               max-height="150"
