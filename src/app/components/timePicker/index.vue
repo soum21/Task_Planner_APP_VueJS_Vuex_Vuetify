@@ -30,7 +30,7 @@ export default {
       time2: '',
       menu2: false,
       modal2: false,
-      timeRule: [(v) => !!v || 'Board is required']
+      timeRule: [(v) => !!v || 'Estimated time is required']
     };
   },
   props: {

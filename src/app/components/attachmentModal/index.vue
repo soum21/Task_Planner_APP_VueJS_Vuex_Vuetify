@@ -114,8 +114,8 @@ export default {
         parentId: parseInt(this.parentId),
         board: this.board
       };
-      this.$store.dispatch('addFile', data);
       this.files = [];
+      this.$store.dispatch('addFile', data);
     },
     addFiles() {
       this.files.forEach((file, f) => {
