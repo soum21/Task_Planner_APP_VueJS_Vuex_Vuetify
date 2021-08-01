@@ -1,13 +1,34 @@
 import { getItemInArray, deleteItemFromArray, getItemByName, sortArray } from '../../utils';
 
 const ADD_TASK = (state, payload) => {
-  const newTask = {
-    id: payload.id,
-    title: payload.title,
-    description: payload.description,
-    taskBoard: 'pending'
-  };
-  state.tasks.push(newTask);
+  const { description, estimatedTime, title, board, files } = payload;
+  // const { board } = payload;
+  const totalArray = getItemByName(state.taskList, board);
+  let lastElement = totalArray.tasks[totalArray.tasks.length - 1];
+  console.log(lastElement);
+  if (lastElement) {
+    const lastId = lastElement.id;
+    const id = lastId + 1 + Math.random() * 100;
+    let data = {
+      id: id,
+      title: title,
+      description: description,
+      estimatedTime: estimatedTime,
+      files: files,
+      comments: []
+    };
+    totalArray.tasks.push(data);
+  } else {
+    let data = {
+      id: 1,
+      title: title,
+      description: description,
+      estimatedTime: estimatedTime,
+      files: files,
+      comments: []
+    };
+    totalArray.tasks.push(data);
+  }
 };
 
 const EDIT_TASK = (state, payload) => {

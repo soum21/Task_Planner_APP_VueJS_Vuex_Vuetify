@@ -66,7 +66,6 @@ export default {
       this.viewEditOption = !this.viewEditOption;
       this.checked = !this.checked;
       this.updateState = true;
-      console.log(this.files);
     },
     cancel() {
       this.title = this.detailData.title;
@@ -85,7 +84,6 @@ export default {
       this.$router.go(-1);
     },
     handleComment(comment) {
-      console.log(comment);
       const { board, id } = this.$route.params;
       const data = {
         comment: comment,

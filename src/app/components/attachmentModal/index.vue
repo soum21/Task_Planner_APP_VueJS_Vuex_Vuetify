@@ -4,39 +4,43 @@
       <v-card-title class="text-h5" :class="setColor"> Attachments </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
-        <v-row>
-          <v-col v-for="file in attachments" :key="file.id" cols="6" sm="6">
-            <v-card elevation="3" class="justify-center">
-              <v-row class="ma-3" align="center" justify="center">
-                <v-col cols="6" sm="6">
-                  <span :class="$vuetify.breakpoint.xs ? 'text-caption pt-2 px-1' : 'text-h6 pt-2 px-1'"
-                    >{{ file.name }}
-                  </span>
-                </v-col>
-                <v-col cols="6" sm="6" v-show="doUpload">
-                  <v-btn text icon color="grey darken-1" @click="deletefile(file.id)">
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-card>
+        <v-row class="ma-5">
+          <v-col v-for="(file, f) in attachments" :key="f" cols="4" sm="4">
+            <v-img
+              :ref="'file'"
+              max-height="150"
+              max-width="150"
+              :src="file.base64"
+              class="img-fluid"
+              :title="'file' + f"
+            />
           </v-col>
         </v-row>
-        <v-row class="ma-3" align="center" justify="center">
-          <v-col class="ma-3" cols="12" v-show="doUpload">
+
+        <v-row class="ma-5">
+          <v-col v-for="(file, f) in files" :key="f" cols="4" sm="4">
+            <v-img
+              :ref="'file'"
+              max-height="150"
+              max-width="150"
+              src="//placehold.it/400/99cc77"
+              class="img-fluid"
+              :title="'file' + f"
+            />
+          </v-col>
+        </v-row>
+        <v-row class="ma-3" align="center" justify="center" v-show="doUpload">
+          <v-col class="ma-3" cols="12">
             <v-file-input
-              v-model="files"
-              :color="setColor"
-              counter
-              label="File input"
+              accept="image/*"
+              label="Select files"
+              prepend-icon="photo"
               multiple
-              placeholder="Select your files"
-              prepend-icon="mdi-paperclip"
-              outlined
-              :show-size="1000"
-            >
-              <span class="text-overline grey--text text--darken-3 mx-2"> +{{ files.length - 2 }} File(s) </span>
-            </v-file-input>
+              chips
+              color="pink"
+              v-model="files"
+              @change="addFiles"
+            ></v-file-input>
           </v-col>
         </v-row>
       </v-card-text>
@@ -54,7 +58,9 @@ export default {
   name: 'AttachmentModal',
   data() {
     return {
-      files: []
+      files: [],
+      readers: [],
+      uploadFiles: []
     };
   },
   props: {
@@ -67,6 +73,7 @@ export default {
       default: true
     }
   },
+  mounted() {},
   computed: {
     // a computed getter
     setColor: function () {
@@ -103,12 +110,30 @@ export default {
     },
     handleUpload() {
       const data = {
-        files: this.files,
+        files: this.uploadFiles,
         parentId: parseInt(this.parentId),
         board: this.board
       };
       this.$store.dispatch('addFile', data);
       this.files = [];
+    },
+    addFiles() {
+      this.files.forEach((file, f) => {
+        this.readers[f] = new FileReader();
+        this.readers[f].onloadend = () => {
+          let fileData = this.readers[f].result;
+          let imgRef = this.$refs.file[f];
+          imgRef.src = fileData;
+          var imageRef = {
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            base64: fileData
+          };
+          this.uploadFiles.push(imageRef);
+        };
+        this.readers[f].readAsDataURL(this.files[f]);
+      });
     }
   }
 };

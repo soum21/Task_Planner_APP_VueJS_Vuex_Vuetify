@@ -7,6 +7,7 @@
           label="Estimated Time"
           :prepend-icon="getIcon"
           readonly
+          :rules="timeRule"
           v-bind="attrs"
           v-on="on"
         ></v-text-field>
@@ -28,7 +29,8 @@ export default {
       time: '',
       time2: '',
       menu2: false,
-      modal2: false
+      modal2: false,
+      timeRule: [(v) => !!v || 'Board is required']
     };
   },
   props: {
@@ -46,7 +48,6 @@ export default {
   },
   computed: {
     getIcon() {
-      console.log(this.showIcon);
       if (this.showIcon) return 'mdi-clock-time-four-outline';
       else return '';
     }
