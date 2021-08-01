@@ -5,8 +5,8 @@
       <v-divider></v-divider>
       <v-card-text>
         <v-form class="px-1" v-model="valid" ref="form">
-          <v-row class="ma-3" align="center" justify="center">
-            <v-col class="ma-3" cols="12">
+          <v-row class="ma-1" align="center" justify="center">
+            <v-col class="ma-1" cols="12">
               <v-text-field
                 label="Title"
                 v-model="title"
@@ -16,8 +16,8 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-row class="ma-3" align="center" justify="center">
-            <v-col class="ma-3" cols="12">
+          <v-row class="ma-1" align="center" justify="center">
+            <v-col class="ma-1" cols="12">
               <v-textarea
                 label="Description"
                 v-model="description"
@@ -27,16 +27,13 @@
               ></v-textarea>
             </v-col>
           </v-row>
-          <v-row class="ma-3" align="center" justify="center">
-            <v-col class="ma-3" cols="12">
+          <v-row class="ma-1" align="center" justify="center">
+            <v-col class="ma-1" cols="12">
               <TimePicker @changeTime="changeTime($event)" :itemTime="time" :showIcon="showIcon" />
             </v-col>
           </v-row>
-          <v-row class="ma-3" align="center" justify="center">
-            <v-col cols="4">
-              <v-subheader>Select Board</v-subheader>
-            </v-col>
-            <v-col cols="8">
+          <v-row class="ma-1" align="center" justify="center">
+            <v-col cols="12">
               <v-select
                 :items="boards"
                 v-model="board"
@@ -61,8 +58,8 @@
               />
             </v-col>
           </v-row>
-          <v-row class="ma-3" align="center" justify="center">
-            <v-col class="ma-3" cols="12">
+          <v-row class="ma-1" align="center" justify="center">
+            <v-col class="ma-1" cols="12">
               <v-file-input
                 accept="image/*"
                 label="Select files"
@@ -77,7 +74,7 @@
           </v-row>
         </v-form>
       </v-card-text>
-      <v-card-actions class="d-flex justify-center mb-6">
+      <v-card-actions class="d-flex justify-center mb-3">
         <v-spacer></v-spacer>
         <v-btn class="blue lighten-2" x-large color="white" text @click="submit"> Submit </v-btn>
         <v-btn class="red lighten-2" x-large color="white" text @click="toggleModal"> Close </v-btn>
