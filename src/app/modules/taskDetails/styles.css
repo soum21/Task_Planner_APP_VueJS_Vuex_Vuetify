@@ -1,16 +1,16 @@
 .columnWrapper {
-   padding: 20;
-   height: auto;
-   width: 60%;
-   margin: 20px auto;
- }
+  /* padding: 20; */
+  height: auto;
+  width: 100%;
+  margin: 20px auto;
+}
 
- .rowContainer{
+.rowContainer {
   align-items: center;
   justify-content: center;
 }
 
-.inputDiv{
+.inputDiv {
   text-align: center;
   padding: 10px 0;
 }

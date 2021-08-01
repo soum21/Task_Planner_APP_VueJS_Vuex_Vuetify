@@ -5,11 +5,11 @@
         <SingleComment :comment="comment" />
       </div>
     </div>
-    <v-row class="mb-3" align="center">
-      <v-col cols="6" sm="6" class="d-flex justify-end">
+    <v-row class="mb-1">
+      <v-col cols="8" sm="8" class="d-flex justify-start">
         <v-text-field label="Add a comment" v-model="comment" @keyup.enter="handleComment"></v-text-field>
       </v-col>
-      <v-col cols="6" sm="6" class="d-flex justify-start">
+      <v-col cols="4" sm="4" class="d-flex justify-start">
         <v-btn text icon color="blue" @click.prevent="handleComment" :disabled="!comment">
           <v-icon x-large>mdi-send</v-icon>
         </v-btn>

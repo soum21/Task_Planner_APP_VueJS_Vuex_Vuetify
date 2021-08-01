@@ -140,7 +140,7 @@ export default {
           let fileData = this.readers[f].result;
           let imgRef = this.$refs.file[f];
           imgRef.src = fileData;
-          var imageRef = {
+          let imageRef = {
             name: file.name,
             size: file.size,
             type: file.type,

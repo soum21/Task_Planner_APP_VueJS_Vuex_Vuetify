@@ -1,13 +1,15 @@
 <template lang="">
-  <v-row class="ma-5">
+  <v-row class="ma-1">
     <v-card class="ma-1">
       <v-list one-line>
         <v-list-item>
-          <v-list-item-avatar>
-            <v-icon large color="blue darken-2"> mdi-message-text </v-icon>
+          <v-list-item-avatar class="mb-6">
+            <v-icon color="blue darken-2"> mdi-message-text </v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ comment.text }}</v-list-item-title>
+            <span class="text-body mb-6 text-center">
+              {{ comment.text }}
+            </span>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -22,3 +24,4 @@ export default {
   }
 };
 </script>
+<style scoped></style>
