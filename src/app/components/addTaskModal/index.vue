@@ -46,18 +46,15 @@
               </v-select>
             </v-col>
           </v-row>
-          <v-row v-show="files.length > 0">
-            <v-col v-for="(file, f) in files" :key="f" cols="4" sm="4">
-              <v-img
-                :ref="'file'"
-                max-height="150"
-                max-width="150"
-                src="//placehold.it/400/99cc77"
-                class="img-fluid"
-                :title="'file' + f"
-              />
+
+          <v-row class="ma-5" v-show="files.length > 0">
+            <v-col v-for="(file, f) in files" :key="f" cols="6" md="4" class="d-flex justify-center">
+              <v-card class="pa-2" outlined tile>
+                <v-img :ref="'file'" max-height="250" max-width="250" src="" class="img-fluid" :title="'file' + f" />
+              </v-card>
             </v-col>
           </v-row>
+
           <v-row class="ma-1" align="center" justify="center">
             <v-col class="ma-1" cols="12">
               <v-file-input
@@ -137,13 +134,13 @@ export default {
           let fileData = this.readers[f].result;
           let imgRef = this.$refs.file[f];
           imgRef.src = fileData;
-          let imageRef = {
+          let imageData = {
             name: file.name,
             size: file.size,
             type: file.type,
             base64: fileData
           };
-          this.uploadFiles.push(imageRef);
+          this.uploadFiles.push(imageData);
         };
         this.readers[f].readAsDataURL(this.files[f]);
       });
